@@ -27,19 +27,6 @@ class Card:
             return str(self.index) + " of " + str(self.suit)
 
 
-def printCard(a):
-    face_cards_int = {
-        1: 'Ace',
-        11: 'Jack',
-        12: 'Queen',
-        13: 'King'
-    }
-    if a.index > 10 or a.index == 1:
-        return str(face_cards_int[a.index]) + " of " + str(a.suit)
-
-    else:
-        return str(a.index) + " of " + str(a.suit)
-
 # reading hands
 # convert string (e.g. Ad to card) (a is in format index+suit) (test As, as, ts, 8s)
 
@@ -84,8 +71,8 @@ def string2cards(a):
     return card_list
 
 
-def card2string(a):
-    card_string = ""
+def cards2list(cards_input):
+    card_list = []
     face_cards_short = {
         1: 'A',
         11: 'J',
@@ -98,8 +85,11 @@ def card2string(a):
         "Hearts": "h",
         "Spades": "s"
     }
-    if a.index in face_cards_short:
-        card_string += face_cards_short[a.index] + reverse_suits[a.suit]
-    else:
-        card_string += str(a.index) + reverse_suits[a.suit]
-    return card_string
+    card_string = ""
+    for i in cards_input:
+        if cards_input.getIndex() in face_cards_short:
+            card_string += face_cards_short[card_string.getIndex()] + reverse_suits[card_string.getSuit()]
+        else:
+            card_string += str(card_string.getIndex()) + reverse_suits[card_string.getSuit()]
+        card_list.append(i)
+    return card_list
