@@ -4,6 +4,7 @@ from nlh.Card import Card
 from nlh.Comparator import find_straight
 from nlh.Comparator import combine_hand
 from nlh.Comparator import find_hand
+from nlh.Comparator import find_flush
 from nlh.NLH_run import NLH_run
 from nlh.Card import cards2list
 
@@ -24,18 +25,16 @@ HH2 = convert2card(HH2)
 #hero_cards = combine_hand(first_run,HH1,HH2)
 #find_hand(hero_cards)
 
-test1 = "9s 8s 7s 5d 6h 4s Jc 8c 7c"
-test2 = "9s 2h 9c 4s 9d 5d 9h 6d 8c 8d 8h 8s 7s 6h 5c"
-test3 = "Ah Ts 9s Kh As Js Qh 8s Jh 7s Th 2s 2c 2d 2h Kc Jc"
+
+test3 = "Ah Ts 9s Kh As Js Qh 8s Jh 7s Th 2s 2c 2d 2h Kc Jc Tc Td Jd 4c 9c Qd"
 test4 = "5s 2s"
+test5 = "Ac Tc Jc 9c 2c 5c 4c 7c"
 
-
-#find_hand(string2cards(a))
 print(test3)
-#find_hand(string2cards(test3))
-a = string2cards(test3)
-c = cards2list(a)
-print(c)
+find_hand(string2cards(test3))
+
+#print(test5)
+#find_flush(string2cards(test5))
 
 
 # comparing 2 5-card hands, i.e. compare result from find_hand(hero) vs find_hand(villain)

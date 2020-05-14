@@ -75,6 +75,7 @@ def cards2list(cards_input):
     card_list = []
     face_cards_short = {
         1: 'A',
+        10: 'T',
         11: 'J',
         12: 'Q',
         13: 'K'
@@ -85,11 +86,12 @@ def cards2list(cards_input):
         "Hearts": "h",
         "Spades": "s"
     }
-    card_string = ""
+
     for i in cards_input:
-        if cards_input.getIndex() in face_cards_short:
-            card_string += face_cards_short[card_string.getIndex()] + reverse_suits[card_string.getSuit()]
+        card_string = ""
+        if i.getIndex() in face_cards_short:
+            card_string += face_cards_short[i.getIndex()] + reverse_suits[i.getSuit()]
         else:
-            card_string += str(card_string.getIndex()) + reverse_suits[card_string.getSuit()]
-        card_list.append(i)
+            card_string += str(i.getIndex()) + reverse_suits[i.getSuit()]
+        card_list.append(card_string)
     return card_list
