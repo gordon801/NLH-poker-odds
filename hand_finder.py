@@ -83,7 +83,6 @@ def find_hand(cards_input):
     fh_trips = []
     fh_pair_index = 0
     fh_pair = []
-    flush_suits = []
     best_hand = []
 
 
@@ -134,15 +133,30 @@ def find_hand(cards_input):
                 for j in cards_input:
                     if j.getSuit() == suit_counter_suits[k]:
                         flush_cards.append(j)
-                flush_suits.append(flush_cards)
-                if find_flush(flush_cards)[0] == 1:
-                    sf_hand.append(flush_cards)[1]
+                output = find_flush(flush_cards)
+                print(output[0])
+                print(cards2list(output[1]))
+                if output[0] == 1:
+                    print(1)
+                    sf_hand.append(output[1])
+                    for i in sf_hand:
+                        print("list", cards2list(i))
                 else:
-                    flush_hand.append(flush_cards)[1]
+                    print(0)
 
+
+                # if output[0] == 1:
+                #     print(1)
+                #     sf_hand.append(output[1])
+                # else:
+                #     print(0)
+                #     flush_hand.append(output[1])
+
+        print("Flush")
         for i in sf_hand:
             print(cards2list(i))
-
+        for i in flush_hand:
+            print(cards2list(i))
 
         # i = len(flush_suits)
         # while i >= 0:

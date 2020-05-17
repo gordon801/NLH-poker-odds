@@ -29,6 +29,8 @@ HH2 = convert2card(HH2)
 test3 = "Ah Ts 9s Kh As Js Qh 8s Jh 7s Th 2s 2c 2d 2h Kc Jc Tc Td Jd 4c 9c Qd"
 test4 = "5s 2s"
 test5 = "Ac Tc Jc 9c 2c 5c 4c 7c"
+test6 = "Ah Kh Qh Jh Th"
+test7 = "4s Ah Kh Qh Jh Th"
 
 print(test3)
 find_hand(string2cards(test3))
