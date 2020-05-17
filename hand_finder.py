@@ -1,6 +1,7 @@
 from nlh.Card import cards2list
 from nlh.Comparator import flush_comparison
 
+
 def combine_hand(a, b1, b2):
     all_cards = []
     for i in a:
@@ -54,7 +55,7 @@ def find_straight(cards_input):
 
 def find_flush(cards_input):
     if find_straight(cards_input) is not None:
-        return find_straight(cards_input)
+        return 1, find_straight(cards_input)
     else:
         indice_order = []
         highest_flush = []
@@ -65,7 +66,7 @@ def find_flush(cards_input):
             for j in cards_input:
                 if i == j.getIndex():
                     highest_flush.append(j)
-        return highest_flush
+        return 0, highest_flush
 
 
 def find_hand(cards_input):
@@ -84,6 +85,7 @@ def find_hand(cards_input):
     fh_pair = []
     flush_suits = []
     best_hand = []
+
 
     # hand_strengths = {
     #     1: 'Straight Flush',
@@ -126,22 +128,32 @@ def find_hand(cards_input):
         for k in range(4):
             i = suit_counter[k]
             flush_cards = []
+            flush_hand = []
+            sf_hand = []
             if i >= 5:
                 for j in cards_input:
                     if j.getSuit() == suit_counter_suits[k]:
                         flush_cards.append(j)
                 flush_suits.append(flush_cards)
+                if find_flush(flush_cards)[0] == 1:
+                    sf_hand.append(flush_cards)[1]
+                else:
+                    flush_hand.append(flush_cards)[1]
 
-        i = len(flush_suits)
-        while i >= 0:
-            flush_suits.append(find_flush(flush_suits[0]))
-            flush_suits.remove(flush_suits[0])
-            i -= 1
-
-        print("Flush")
-
-        for i in flush_suits:
+        for i in sf_hand:
             print(cards2list(i))
+
+
+        # i = len(flush_suits)
+        # while i >= 0:
+        #     flush_suits.append(find_flush(flush_suits[0]))
+        #     flush_suits.remove(flush_suits[0])
+        #     i -= 1
+        #
+        # print("Flush")
+        #
+        # for i in flush_suits:
+        #     print(cards2list(i))
 
     # determine quads, if so find the highest quads on the board and return it with the highest kicker
     if any(i == 4 for i in indice_counter) and hand_strength > 1:
