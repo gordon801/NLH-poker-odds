@@ -1,10 +1,10 @@
 from nlh.Card import convert2card
 from nlh.Card import string2cards
 from nlh.Card import Card
-from nlh.Comparator import find_straight
-from nlh.Comparator import combine_hand
-from nlh.Comparator import find_hand
-from nlh.Comparator import find_flush
+from nlh.hand_finder import find_straight
+from nlh.hand_finder import combine_hand
+from nlh.hand_finder import find_hand
+from nlh.hand_finder import find_flush
 from nlh.NLH_run import NLH_run
 from nlh.Card import cards2list
 
