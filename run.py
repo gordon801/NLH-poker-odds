@@ -31,6 +31,7 @@ test4 = "5s 2s"
 test5 = "Ac Tc Jc 9c 2c 5c 4c 7c"
 test6 = "Ah Kh Qh Jh Th"
 test7 = "4s Ah Kh Qh Jh Th"
+test8 = "Ah Kh Qh Jh Th 9h 8h 7h 6h 5h 4h 3h 2h"
 
 print(test3)
 find_hand(string2cards(test3))
