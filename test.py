@@ -6,5 +6,6 @@ for i in list:
 
 print(list)
 
-for i in range(5):
+x = 5
+for i in range(x):
     print(i)

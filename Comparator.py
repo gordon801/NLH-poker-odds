@@ -51,6 +51,6 @@ def comparator(hand1, hand2):
             elif comp_hand2[i].getIndex() > comp_hand1[i].getIndex():
                 return comp_hand2
 
-        print("Draw")
+        #print("Draw")
         return "Draw"
 

@@ -7,21 +7,29 @@ from nlh.hand_finder import find_flush
 from nlh.NLH_run import NLH_run
 from nlh.Card import cards2list
 from nlh.showdown import showdown
+from nlh.showdown import nlh_sim
 
 
 # understanding hands from input
 # not allow invalid inputs (copied cards i.e. reuse 7s)
 print("Valid inputs for Card Index = 2-9, T, J, K, Q, A")
 print("Valid inputs for Card Suit = d, c, h, s")
-# HH = input("Enter your first hand in the format \"Ad 7s\": ")
-HH = "9s 8s"
+#HH = input("Enter your first hand in the format \"Ad 7s\": ")
+HH = "Ts 9s"
+print(HH)
 HH = string2cards(HH)
-VH = "Tc 9c"
+
+#VH = input("Enter your second hand in the format \"Ad 7s\": ")
+VH = "Ac 2c"
+print(VH)
 VH = string2cards(VH)
-showdown(HH,VH)
+# showdown(HH, VH)
+
+
+print(nlh_sim(HH, VH, 50000), "%")
 
 # print("The hero's hand is:", printCard(HH1) + ", " + printCard(HH2))
-# VH = input("Enter your second hand in the format \"Ad 7s\": ")
+
 #first_run = NLH_run(HH1,HH2)
 #hero_cards = combine_hand(first_run,HH1,HH2)
 #find_hand(hero_cards)

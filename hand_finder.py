@@ -140,7 +140,7 @@ def find_hand(cards_input):
             best_hand = flush_comparison(flush_hands)
             hand_strength = 6
 
-        print(hand_strengths[hand_strength], cards2list(best_hand))
+        # print(hand_strengths[hand_strength], cards2list(best_hand))
         return hand_strength, best_hand
 
     # determine quads, if so find the highest quads on the board and return it with the highest kicker
@@ -166,7 +166,7 @@ def find_hand(cards_input):
                 best_hand.append(i)
                 break
         hand_strength = 8
-        print(hand_strengths[hand_strength], cards2list(best_hand))
+        # print(hand_strengths[hand_strength], cards2list(best_hand))
         return hand_strength, best_hand
 
     # determine full house, and return the highest set+pair on the board
@@ -177,7 +177,6 @@ def find_hand(cards_input):
         fh_pair_index = 0
         fh_pair = []
         for e, i in reversed(list(enumerate(indice_counter, start=2))):
-            print(e,i)
             if i >= 3 and fh_trips_index == 0:
                 fh_trips_index = e
             elif i >= 2 and fh_trips_index != e and fh_pair_index == 0:
@@ -196,8 +195,8 @@ def find_hand(cards_input):
         best_hand.extend(fh_trips)
         best_hand.extend(fh_pair)
         hand_strength = 7
-        print(hand_strengths[hand_strength], cards2list(best_hand))
-        return hand_strength, cards2list(best_hand)
+        # print(hand_strengths[hand_strength], cards2list(best_hand))
+        return hand_strength, best_hand
 
     # determine straight and return the highest straight
     if hand_strength < 6:
@@ -205,7 +204,7 @@ def find_hand(cards_input):
         if straight_cards is not None:
             best_hand = straight_cards
             hand_strength = 5
-            print(hand_strengths[hand_strength], cards2list(best_hand))
+            # print(hand_strengths[hand_strength], cards2list(best_hand))
             return hand_strength, best_hand
 
     # determine trips and return the highest trips and kickers
@@ -235,7 +234,7 @@ def find_hand(cards_input):
                     best_hand.append(j)
 
         hand_strength = 4
-        print(hand_strengths[hand_strength], cards2list(best_hand))
+        # print(hand_strengths[hand_strength], cards2list(best_hand))
         return hand_strength, best_hand
 
     # determine top two pair and return the highest top two pair and kicker
@@ -267,9 +266,10 @@ def find_hand(cards_input):
         for i in cards_input:
             if i.getIndex() == two_pair_kicker:
                 best_hand.append(i)
+                break
 
         hand_strength = 3
-        print(hand_strengths[hand_strength], cards2list(best_hand))
+        # print(hand_strengths[hand_strength], cards2list(best_hand))
         return hand_strength, best_hand
 
     # determine pair and return the highest pair and kickers
@@ -299,7 +299,7 @@ def find_hand(cards_input):
                     best_hand.append(j)
 
         hand_strength = 2
-        print(hand_strengths[hand_strength], cards2list(best_hand))
+        # print(hand_strengths[hand_strength], cards2list(best_hand))
         return hand_strength, best_hand
 
         # determine and return the highest 5 cards
@@ -321,5 +321,5 @@ def find_hand(cards_input):
                     best_hand.append(j)
 
         hand_strength = 1
-        print(hand_strengths[hand_strength], cards2list(best_hand))
+        # print(hand_strengths[hand_strength], cards2list(best_hand))
         return hand_strength, best_hand
