@@ -26,15 +26,15 @@ HH2 = convert2card(HH2)
 #find_hand(hero_cards)
 
 
-test3 = "Ah Ts 9s Kh As Js Qh 8s Jh 7s Th 2s 2c 2d 2h Kc Jc Tc Td Jd 4c 9c Qd"
+test3 = "Ah Ts 9s Kh As Js Qh 8s Jh 7s Th 2s 2c 2d 2h Kc Jc Tc Td Jd 4c 9c Qd Ad Ac"
 test4 = "5s 2s"
 test5 = "Ac Tc Jc 9c 2c 5c 4c 7c"
 test6 = "Ah Kh Qh Jh Th"
-test7 = "4s Ah Kh Qh Jh Th"
+test7 = "Ah Kc Qs Ts 9c"
 test8 = "Ah Kh Qh Jh Th 9h 8h 7h 6h 5h 4h 3h 2h"
 
-print(test3)
-find_hand(string2cards(test3))
+print(test7)
+find_hand(string2cards(test7))
 
 #print(test5)
 #find_flush(string2cards(test5))

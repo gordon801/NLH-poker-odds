@@ -6,7 +6,7 @@
 def flush_comparison(flushes):
     highest_flush = flushes[0]
 
-    for i in range(1,len(flushes)):
+    for i in range(1,len(flushes)): 
         flush_check = flushes[i]
         for j in range(5):
             base_index = highest_flush[j].getIndex()

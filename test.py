@@ -1,9 +1,7 @@
-list = [1]
+list = [1,2,3]
 
-print(list[0])
+for i in list:
+    if i == 1:
+        list[list.index(i)] = 3
 
-for i in range(1,len(list)):
-    print(list[i])
-
-for i in range(5):
-    print(i)
+print(list)
