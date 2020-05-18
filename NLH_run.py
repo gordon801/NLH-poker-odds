@@ -9,7 +9,7 @@ from nlh.Card import Card
 # Returns the community cards (i.e. the cards on the board from that run)
 
 
-def NLH_run(a1, a2):  # , b1 = None, b2 = None
+def NLH_run(hand1, hand2):  # , b1 = None, b2 = None
     # generate deck
     deck = []
     community_cards = []
@@ -24,10 +24,11 @@ def NLH_run(a1, a2):  # , b1 = None, b2 = None
         deck.append(cards_spades)
 
     # remove given cards (hero and villain's hands)
-    deck.remove(a1)
-    deck.remove(a2)
-    # deck.remove(b1)
-    # deck.remove(b2)
+    for i in hand1:
+        deck.remove(i)
+    for i in hand2:
+        deck.remove(i)
+
 
     # generates and returns the flop, turn, and river
     flop = random.sample(deck, k=3)

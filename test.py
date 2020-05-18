@@ -5,3 +5,6 @@ for i in list:
         list[list.index(i)] = 3
 
 print(list)
+
+for i in range(5):
+    print(i)

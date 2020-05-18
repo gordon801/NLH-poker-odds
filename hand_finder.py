@@ -1,16 +1,5 @@
-from typing import List
-
 from nlh.Card import cards2list
 from nlh.Comparator import flush_comparison
-
-
-def combine_hand(a, b1, b2):
-    all_cards = []
-    for i in a:
-        all_cards.append(i)
-    all_cards.append(b1)
-    all_cards.append(b2)
-    return all_cards
 
 
 # find if there are 5 cards in a row, i.e. a straight, factoring in possibility of an A-high straight (AKQJT)
@@ -64,6 +53,8 @@ def find_flush(cards_input):
         for i in cards_input:
             indice_order.append(i.getIndex())
         indice_order.sort(reverse=True)
+        if 1 in indice_order:
+            indice_order.insert(0,indice_order.pop(indice_order.index(1)))
         for i in indice_order[0:5]:
             for j in cards_input:
                 if i == j.getIndex():
@@ -71,27 +62,27 @@ def find_flush(cards_input):
         return 0, highest_flush
 
 
+# from input, returns (hand_strength, best_hand)
 def find_hand(cards_input):
     # add community cards and hero's hand to all_cards
     all_cards = []
     # suit_counter = [c,d,h,s]
     suit_counter = [0, 0, 0, 0]
     # indice_counter = [1,2,...,13], each index represents each possible card index
-    indice_counter: List[int] = [0] * 13
+    indice_counter = [0] * 13
     card_indices = []
-    best_hand = []
 
-    # hand_strengths = {
-    #     9: 'Straight Flush',
-    #     8: 'Quads',
-    #     7: 'Full House',
-    #     6: 'Flush',
-    #     5: 'Straight',
-    #     4: 'Three of a Kind',
-    #     3: 'Two Pair',
-    #     2: 'One Pair',
-    #     1: 'High Card'
-    # }
+    hand_strengths = {
+        9: 'Straight Flush',
+        8: 'Quads',
+        7: 'Full House',
+        6: 'Flush',
+        5: 'Straight',
+        4: 'Three of a Kind',
+        3: 'Two Pair',
+        2: 'One Pair',
+        1: 'High Card'
+    }
 
     suit_counter_suits = {
         0: 'Clubs',
@@ -115,14 +106,14 @@ def find_hand(cards_input):
 
     # move Ace (index 1) to the end, giving it index 14 (13 (K) + 1)
     # need to insert in every function that if it include this index, will need to change it back to 1
-    print("pre:", indice_counter)
     indice_counter.append(indice_counter.pop(0))
 
     # print suit_counter and indice_counter
-    print("SC:", suit_counter)
-    print("IC:", indice_counter)
+    #print("SC:", suit_counter)
+    #print("IC:", indice_counter)
 
     hand_strength = 0
+    best_hand = []
 
     # return the highest flush, but also check for straight flush
     flush_hands = []
@@ -149,12 +140,11 @@ def find_hand(cards_input):
             best_hand = flush_comparison(flush_hands)
             hand_strength = 6
 
-        print("Flush", cards2list(best_hand))
+        print(hand_strengths[hand_strength], cards2list(best_hand))
         return hand_strength, best_hand
 
     # determine quads, if so find the highest quads on the board and return it with the highest kicker
     if any(i == 4 for i in indice_counter) and hand_strength < 9:
-        best_hand = []
         kicker_index = 0
         quads_index = 0
         for e, i in reversed(list(enumerate(indice_counter, start=2))):
@@ -176,21 +166,21 @@ def find_hand(cards_input):
                 best_hand.append(i)
                 break
         hand_strength = 8
-        print("Quads", cards2list(best_hand))
+        print(hand_strengths[hand_strength], cards2list(best_hand))
         return hand_strength, best_hand
 
     # determine full house, and return the highest set+pair on the board
     # Logic: If there's 3 of one index and at least 2 indices with 2 of each index (inc. the 3)
-    elif any(i >= 3 for i in indice_counter) and sum(i >= 2 for i in indice_counter) >= 2:
-        best_hand = []
+    if any(i >= 3 for i in indice_counter) and sum(i >= 2 for i in indice_counter) >= 2 and hand_strength < 8:
         fh_trips_index = 0
         fh_trips = []
         fh_pair_index = 0
         fh_pair = []
         for e, i in reversed(list(enumerate(indice_counter, start=2))):
+            print(e,i)
             if i >= 3 and fh_trips_index == 0:
                 fh_trips_index = e
-            elif i >= 2 and fh_trips_index != 0 and fh_pair_index == 0:
+            elif i >= 2 and fh_trips_index != e and fh_pair_index == 0:
                 fh_pair_index = e
 
         if fh_trips_index == 14:
@@ -206,7 +196,7 @@ def find_hand(cards_input):
         best_hand.extend(fh_trips)
         best_hand.extend(fh_pair)
         hand_strength = 7
-        print("Full House", cards2list(best_hand))
+        print(hand_strengths[hand_strength], cards2list(best_hand))
         return hand_strength, cards2list(best_hand)
 
     # determine straight and return the highest straight
@@ -215,12 +205,11 @@ def find_hand(cards_input):
         if straight_cards is not None:
             best_hand = straight_cards
             hand_strength = 5
-            print("Straight", cards2list(best_hand))
+            print(hand_strengths[hand_strength], cards2list(best_hand))
             return hand_strength, best_hand
 
     # determine trips and return the highest trips and kickers
-    elif any(i == 3 for i in indice_counter):
-        best_hand = []
+    if any(i == 3 for i in indice_counter) and hand_strength < 5:
         trip_kickers = []
         trips_index = 0
         trip_kickers_counter = 2
@@ -246,12 +235,11 @@ def find_hand(cards_input):
                     best_hand.append(j)
 
         hand_strength = 4
-        print("Three of a kind", cards2list(best_hand))
+        print(hand_strengths[hand_strength], cards2list(best_hand))
         return hand_strength, best_hand
 
     # determine top two pair and return the highest top two pair and kicker
-    elif sum(i >= 2 for i in indice_counter) >= 2:
-        best_hand = []
+    if sum(i >= 2 for i in indice_counter) >= 2 and hand_strength < 4:
         top_two_pair_index = 0
         bot_two_pair_index = 0
         two_pair_kicker = 0
@@ -281,12 +269,11 @@ def find_hand(cards_input):
                 best_hand.append(i)
 
         hand_strength = 3
-        print("Two pair", cards2list(best_hand))
+        print(hand_strengths[hand_strength], cards2list(best_hand))
         return hand_strength, best_hand
 
     # determine pair and return the highest pair and kickers
     if any(i == 2 for i in indice_counter) and hand_strength < 3:
-        best_hand = []
         pair_kickers = []
         pair_index = 0
         pair_kickers_counter = 3
@@ -312,12 +299,11 @@ def find_hand(cards_input):
                     best_hand.append(j)
 
         hand_strength = 2
-        print("Pair", cards2list(best_hand))
+        print(hand_strengths[hand_strength], cards2list(best_hand))
         return hand_strength, best_hand
 
         # determine and return the highest 5 cards
-    elif hand_strength < 2:
-        best_hand = []
+    if hand_strength < 2:
         high_cards = []
         high_card_counter = 5
         for e, i in reversed(list(enumerate(indice_counter, start=2))):
@@ -335,5 +321,5 @@ def find_hand(cards_input):
                     best_hand.append(j)
 
         hand_strength = 1
-        print("High Card", cards2list(best_hand))
+        print(hand_strengths[hand_strength], cards2list(best_hand))
         return hand_strength, best_hand
