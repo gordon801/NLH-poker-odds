@@ -46,9 +46,15 @@ def comparator(hand1, hand2):
 
     else:
         for i in range(5):
-            if comp_hand1[i].getIndex() > comp_hand2[i].getIndex():
+            hand_index1 = comp_hand1[i].getIndex()
+            hand_index2 = comp_hand2[i].getIndex()
+            if hand_index1 == 1:
+                hand_index1 = 14
+            if hand_index2 == 1:
+                hand_index2 = 14
+            if hand_index1 > hand_index2:
                 return comp_hand1
-            elif comp_hand2[i].getIndex() > comp_hand1[i].getIndex():
+            elif hand_index2 > hand_index1:
                 return comp_hand2
 
         #print("Draw")

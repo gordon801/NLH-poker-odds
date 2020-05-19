@@ -63,7 +63,5 @@ def nlh_sim(hand1, hand2, sim_num):
             hand1_wins += 1
         elif result[0] == 0:
             draws += 1
-    print("W:", hand1_wins)
-    print("D:", draws)
-    print("N:", sim_num)
-    return (hand1_wins / sim_num) * 100
+    print("W:", hand1_wins, "D:", draws, "N:", sim_num)
+    return ((hand1_wins + draws) / sim_num) * 100

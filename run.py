@@ -26,7 +26,7 @@ VH = string2cards(VH)
 # showdown(HH, VH)
 
 
-print(nlh_sim(HH, VH, 50000), "%")
+print(nlh_sim(HH, VH, 5000), "%")
 
 # print("The hero's hand is:", printCard(HH1) + ", " + printCard(HH2))
 
