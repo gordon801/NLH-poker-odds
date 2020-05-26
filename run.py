@@ -14,19 +14,18 @@ from nlh.showdown import nlh_sim
 # not allow invalid inputs (copied cards i.e. reuse 7s)
 print("Valid inputs for Card Index = 2-9, T, J, K, Q, A")
 print("Valid inputs for Card Suit = d, c, h, s")
-#HH = input("Enter your first hand in the format \"Ad 7s\": ")
-HH = "Ts 9s"
-print(HH)
-HH = string2cards(HH)
+HH = input("Enter your first hand in the format \"Ad 7s\": ")
+# HH = "Ts 9s"
+# print(HH)
+HH_card = string2cards(HH)
 
-#VH = input("Enter your second hand in the format \"Ad 7s\": ")
-VH = "Ac 2c"
-print(VH)
-VH = string2cards(VH)
+VH = input("Enter your second hand in the format \"Ad 7s\": ")
+# VH = "Ac 2c"
+# print(VH)
+VH_card = string2cards(VH)
 # showdown(HH, VH)
 
-
-print(nlh_sim(HH, VH, 5000), "%")
+print(HH, "wins", nlh_sim(HH_card, VH_card, 5000), "% of the time")
 
 # print("The hero's hand is:", printCard(HH1) + ", " + printCard(HH2))
 
