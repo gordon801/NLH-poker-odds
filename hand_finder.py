@@ -1,5 +1,4 @@
-from nlh.Card import cards2list
-from nlh.Comparator import flush_comparison
+from Comparator import flush_comparison
 
 
 # find if there are 5 cards in a row, i.e. a straight, factoring in possibility of an A-high straight (AKQJT)

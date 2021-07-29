@@ -1,16 +1,8 @@
-from nlh.NLH_run import NLH_run
-from nlh.hand_finder import find_hand
-
-from nlh.Card import cards2list
-from nlh.Comparator import comparator
-
-from nlh.Card import string2cards
-from nlh.Card import Card
-
+from NLH_run import NLH_run
+from hand_finder import find_hand
+from Comparator import comparator
 
 def showdown(hand1, hand2):
-    # print("Hand 1:", cards2list(hand1))
-    # print("Hand 2:", cards2list(hand2))
 
     hand_strengths = {
         9: 'Straight Flush',
@@ -25,7 +17,6 @@ def showdown(hand1, hand2):
     }
 
     simulated_board = NLH_run(hand1, hand2)
-    # print("Board:", cards2list(simulated_board))
 
     new_hand1 = []
     new_hand2 = []
@@ -63,5 +54,8 @@ def nlh_sim(hand1, hand2, sim_num):
             hand1_wins += 1
         elif result[0] == 0:
             draws += 1
-    print("W:", hand1_wins, "D:", draws, "N:", sim_num)
-    return ((hand1_wins + draws) / sim_num) * 100
+    nlh_sim_results = [round((hand1_wins / sim_num) * 100, 2), round((draws / sim_num) * 100,2), sim_num]
+    # print("W:", hand1_wins, "D:", draws, "N:", sim_num)
+    # return ((hand1_wins) / sim_num) * 100
+    return nlh_sim_results
+

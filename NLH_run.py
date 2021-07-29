@@ -1,6 +1,6 @@
 import random
 
-from nlh.Card import Card
+from Card import Card
 
 
 # Creating the board (i.e. produce 5 cards from a deck excluding input hands)
