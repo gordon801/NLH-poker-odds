@@ -6,6 +6,16 @@ The results have been checked against a 3rd party program (https://www.pokerstra
 
 **Note: there is some variance in the python calculator's results due to a relatively low simulation number (50,000), which can be increased for less variance in result.**
 
+**NB: Program logic and structure is scheduled to be refactored in the near future.**
+
+## Program Structure
+* Card.py: Class "Card" definitions and related functions.
+* NLH_run.py: Generates one simulation of the board for two given hands.
+* hand_finder.py: Algorithm to find the best 5-card hand from the board.
+* Comparator.py: Function to compare two 5-card hands to determine the best hand.
+* showdown.py: Generates all the simulations and keeps track of the number of wins and draws.
+* run.py: Wrapper script that calls the other .py scripts and outputs the result.
+
 ## Example 1: Ad 7s vs As 7h
 ![image](https://user-images.githubusercontent.com/62014067/127465151-9524d137-9a4b-4b8a-8706-85016a8518c8.png)
 
